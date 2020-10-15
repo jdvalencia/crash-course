@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Purchasable> with no props should match previous snapshot? 1`] = `"<div><p>You need to purchase this page</p><p>It costs  Cookies</p><button>Buy Now</button></div>"`;
