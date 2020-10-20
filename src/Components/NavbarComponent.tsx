@@ -66,7 +66,7 @@ export const NavBarComponent: FunctionComponent<any> = (props) => {
                         {menuItems}
                     </Menu>
                     <Typography variant="h3" className={classes.title}>
-                        Te Amo Ambar 
+                        Practice Page
                 </Typography>
                 <Typography variant="h6">
                     {props.cookies.toFixed(0)} Cookies
