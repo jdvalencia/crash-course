@@ -9,9 +9,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { NavBarComponent } from './Components/NavbarComponent';
 import { Purchasable } from './Components/Purchasable/Purchasable';
 import { ChuckNorrisJoke } from './Components/ChuckNorrisJoke/ChuckNorrisJoke';
-import { Pokemon } from './models/pokemon';
-import { PokemonDisplay } from './Components/PokemonDisplay/PokemonDisplay';
 import { Pokedex } from './Components/Pokedex/Pokedex';
+import { ErrorCatching } from './Components/HOC-ErrorHandling/higher-order-error-boundary';
+import { DontTouch } from './Components/DummyComponent/DontTouch';
+import { GranularErrorBoundary } from './Components/GranularErrorBoundary/GranularErrorBoundary';
+import { GlobalErrorBoundary } from './Components/GlobalErrorBoundary/GlobalErrorBoundary';
 
 function App() {
   const [cookiePState, changeCookiePState] = useState({ cookieName: '', storeName: '', userName: '' })
@@ -19,6 +21,7 @@ function App() {
   const [cookiesPerSecond, changeCookiesPerSecond] = useState(0)
   const [buildingsMap, changeBuildingsMap] = useState({ grandmas: 0, bakeries: 0, farms: 0, mines: 0, factories: 0 })
   const [boughtPages, changeBoughtPages] = useState<any>({ personalization: false, chuckNorris:false })
+  const [btnClick, changeBtnClick] = useState(false);
 
   const buyPage = (name: string, price: number) => {
     let newPages: any = { ...boughtPages }
@@ -44,6 +47,7 @@ function App() {
     <div className="App">
       <Router>
         <NavBarComponent cookies={cookies} />
+        <GlobalErrorBoundary>
         <Switch>
           <Route exact path='/' render={() => <CookieClicker {...totalCookieState} cookiePState={cookiePState} />} />
           <Route path='/personalization' render={(props) => {
@@ -63,7 +67,14 @@ function App() {
           <Route path='/pokedex'>
             <Pokedex/>
           </Route>
+          <GranularErrorBoundary>
+          <Route path='/TestingError' render={(props)=> { return <ErrorCatching btnClick={btnClick} render={(p)=>{ return <DontTouch btnClick={btnClick} changeBtnClick={changeBtnClick} /> }} /> }} />
+          </GranularErrorBoundary>
+          {/* <GranularErrorBoundary>
+          <Route path='/TestingError' render={(p)=> {return <DontTouch/> }} />
+          </GranularErrorBoundary> */}
         </Switch>
+        </GlobalErrorBoundary> 
         <ToastContainer />
       </Router>
     </div>

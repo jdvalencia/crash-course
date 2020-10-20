@@ -39,11 +39,11 @@ export const NavBarComponent: FunctionComponent<any> = (props) => {
     //we can programmatically build the menu items
     let menuItems = []
     //always have the login item
-    menuItems.push(<MenuItem onClick={handleClose}><Link to='/login'>Login</Link></MenuItem>)
-    menuItems.push(<MenuItem onClick={handleClose}><Link to='/'>Clicker</Link></MenuItem>,
-        <MenuItem onClick={handleClose}><Link to='/personalization'>Personalize</Link></MenuItem>,
-        <MenuItem onClick={handleClose}><Link to='/ChuckNorris'>Chuck Norris Jokes</Link></MenuItem>,
-        <MenuItem onClick={handleClose}><Link to='/pokedex'>Pokedex</Link></MenuItem>,
+    menuItems.push(<MenuItem key={'clicker'} onClick={handleClose}><Link to='/'>Clicker</Link></MenuItem>,
+        <MenuItem key={'personalize'} onClick={handleClose}><Link to='/personalization'>Personalize</Link></MenuItem>,
+        <MenuItem key={'CNJ'} onClick={handleClose}><Link to='/ChuckNorris'>Chuck Norris Jokes</Link></MenuItem>,
+        <MenuItem key={'pokedex'} onClick={handleClose}><Link to='/pokedex'>Pokedex</Link></MenuItem>,
+        <MenuItem key={'test'} onClick={handleClose}><Link to='/TestingError'>Test Component</Link></MenuItem>
     )
 
 
